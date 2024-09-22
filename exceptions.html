@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Exceptions &#8212; Wayback Tweets Documentation (1.0rc1.x)</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4f649999" />
+    <link rel="stylesheet" type="text/css" href="_static/flask.css?v=b87c8d14" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=e14f3222" />
+    <script src="_static/documentation_options.js?v=b2dc1058"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="icon" href="_static/parthenon.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Hands-On Examples" href="handson.html" />
+    <link rel="prev" title="Outputs" href="outputs.html" />
+ 
+    <meta name="description" content="Retrieves archived tweets CDX data from the Wayback Machine, performs necessary parsing, and saves the data">
+
+    <meta property="og:title" content="Exceptions" />
+    <meta property="og:description" content="Retrieves archived tweets CDX data from the Wayback Machine, performs necessary parsing, and saves the data">
+    <meta property="og:image" content="https://claromes.github.io/waybacktweets/_static/card.png" />
+
+    <meta name="twitter:title" content="Exceptions">
+    <meta name="twitter:description" content="Retrieves archived tweets CDX data from the Wayback Machine, performs necessary parsing, and saves the data">
+    <meta property="twitter:image" content="https://claromes.github.io/waybacktweets/_static/card.png" />
+
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="handson.html" title="Hands-On Examples"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="outputs.html" title="Outputs"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Wayback Tweets Documentation (1.0rc1.x)</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Exceptions</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="exceptions">
+<h1>Exceptions<a class="headerlink" href="#exceptions" title="Link to this heading">¶</a></h1>
+<p>These are the most common errors and are handled by the <code class="docutils literal notranslate"><span class="pre">waybacktweets</span></code> package.</p>
+<section id="readtimeouterror">
+<h2>ReadTimeoutError<a class="headerlink" href="#readtimeouterror" title="Link to this heading">¶</a></h2>
+<p>This error occurs when a request to the web.archive.org server takes too long to respond. The server could be overloaded or there could be network issues.</p>
+<p>The output message from the package would be: <code class="docutils literal notranslate"><span class="pre">Connection</span> <span class="pre">to</span> <span class="pre">web.archive.org</span> <span class="pre">timed</span> <span class="pre">out.</span></code></p>
+</section>
+<section id="connectionerror">
+<h2>ConnectionError<a class="headerlink" href="#connectionerror" title="Link to this heading">¶</a></h2>
+<p>This error is raised when the package fails to establish a new connection with web.archive.org. This could be due to network issues or the server being down.</p>
+<p>The output message from the package would be: <code class="docutils literal notranslate"><span class="pre">Failed</span> <span class="pre">to</span> <span class="pre">establish</span> <span class="pre">a</span> <span class="pre">new</span> <span class="pre">connection</span> <span class="pre">with</span> <span class="pre">web.archive.org.</span> <span class="pre">Max</span> <span class="pre">retries</span> <span class="pre">exceeded.</span></code></p>
+<p>This is the error often returned when performing experimental parsing of URLs with the mimetype <code class="docutils literal notranslate"><span class="pre">application/json</span></code>.</p>
+<p>The warning output message from the package would be: <code class="docutils literal notranslate"><span class="pre">Connection</span> <span class="pre">error</span> <span class="pre">with</span> <span class="pre">https://web.archive.org/web/&lt;TIMESTAMP&gt;/https://twitter.com/&lt;USERNAME&gt;/status/&lt;TWEET_ID&gt;.</span> <span class="pre">Max</span> <span class="pre">retries</span> <span class="pre">exceeded.</span> <span class="pre">Error</span> <span class="pre">parsing</span> <span class="pre">the</span> <span class="pre">JSON,</span> <span class="pre">but</span> <span class="pre">the</span> <span class="pre">CDX</span> <span class="pre">data</span> <span class="pre">was</span> <span class="pre">saved.</span></code></p>
+</section>
+<section id="httperror">
+<h2>HTTPError<a class="headerlink" href="#httperror" title="Link to this heading">¶</a></h2>
+<p>This error occurs when the Internet Archive services are temporarily offline. This could be due to maintenance or server issues.</p>
+<p>The output message from the package would be: <code class="docutils literal notranslate"><span class="pre">Temporarily</span> <span class="pre">Offline:</span> <span class="pre">Internet</span> <span class="pre">Archive</span> <span class="pre">services</span> <span class="pre">are</span> <span class="pre">temporarily</span> <span class="pre">offline.</span> <span class="pre">Please</span> <span class="pre">check</span> <span class="pre">Internet</span> <span class="pre">Archive</span> <span class="pre">Twitter</span> <span class="pre">feed</span> <span class="pre">(https://twitter.com/internetarchive)</span> <span class="pre">for</span> <span class="pre">the</span> <span class="pre">latest</span> <span class="pre">information.</span></code></p>
+</section>
+<section id="emptyresponseerror">
+<h2>EmptyResponseError<a class="headerlink" href="#emptyresponseerror" title="Link to this heading">¶</a></h2>
+<p>This exception raised for empty responses.</p>
+<p>The output message from the package would be: <code class="docutils literal notranslate"><span class="pre">No</span> <span class="pre">data</span> <span class="pre">was</span> <span class="pre">saved</span> <span class="pre">due</span> <span class="pre">to</span> <span class="pre">an</span> <span class="pre">empty</span> <span class="pre">response.</span></code></p>
+</section>
+<section id="warning">
+<h2>Warning<a class="headerlink" href="#warning" title="Link to this heading">¶</a></h2>
+<p>It is possible to encounter the following warning when running the <code class="docutils literal notranslate"><span class="pre">TweetsParser</span></code> class (<a class="reference internal" href="api.html#parser"><span class="std std-ref">Parse</span></a>): <code class="docutils literal notranslate"><span class="pre">&lt;TWEET_URL&gt;</span> <span class="pre">not</span> <span class="pre">available</span> <span class="pre">on</span> <span class="pre">the</span> <span class="pre">user's</span> <span class="pre">Twitter</span> <span class="pre">account,</span> <span class="pre">but</span> <span class="pre">the</span> <span class="pre">CDX</span> <span class="pre">data</span> <span class="pre">was</span> <span class="pre">saved.</span></code></p>
+<p>This occurs when the original tweet is no longer available on Twitter and has possibly been deleted.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+  <span id="sidebar-top"></span>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  
+    
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/parthenon.png" alt="Logo"/>
+            </a></p>
+  
+
+  <h3>Contents</h3>
+  <ul>
+<li><a class="reference internal" href="#">Exceptions</a><ul>
+<li><a class="reference internal" href="#readtimeouterror">ReadTimeoutError</a></li>
+<li><a class="reference internal" href="#connectionerror">ConnectionError</a></li>
+<li><a class="reference internal" href="#httperror">HTTPError</a></li>
+<li><a class="reference internal" href="#emptyresponseerror">EmptyResponseError</a></li>
+<li><a class="reference internal" href="#warning">Warning</a></li>
+</ul>
+</li>
+</ul>
+<h3>Navigation</h3>
+<ul>
+  <li><a href="index.html">Overview</a>
+    <ul>
+          <li>Previous: <a href="outputs.html" title="previous chapter">Outputs</a>
+          <li>Next: <a href="handson.html" title="next chapter">Hands-On Examples</a>
+    </ul>
+  </li>
+</ul>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2023 - 2024, Claromes · Icon by The Doodle Library · Title font by Google, licensed under the Open Font License · Pre-release: v1.0rc1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
+    </div>
+  <script src="_static/version_warning_offset.js"></script>
+
+  </body>
+</html>
